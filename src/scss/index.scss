@@ -1,0 +1,113 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-overflow-scrolling: auto;
+  overflow-y: scroll;
+}
+
+.container {
+  min-width: 320px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-top: 60px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-form {
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  transform: translatex(-50%);
+  width: 900px;
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(58, 129, 148, 0.8);
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  z-index: 99;
+}
+.search-form input {
+  padding: 6px;
+  border: 0;
+  border-radius: 4px;
+  outline: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn {
+  border: 0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease 0s;
+  cursor: pointer;
+  &:hover {
+    background-color: #2ee59d;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-3px);
+  }
+}
+.photo-card {
+  text-decoration: none;
+  flex-basis: 45%;
+  min-width: 280px;
+  max-height: 300px;
+  margin-bottom: 20px;
+  padding: 10px;
+  color: inherit;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.2s linear;
+  &:hover {
+    transform: scale(1.025);
+  }
+}
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+  // margin-bottom: 10px;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.info p {
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+}
+.info b {
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+.info-item {
+}
+button.disable {
+  display: none;
+}
