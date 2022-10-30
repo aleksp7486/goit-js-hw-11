@@ -15,6 +15,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
   disableScroll: true,
+  scrollZoom: false,
 });
 
 let currentInputValue = null;
@@ -44,7 +45,9 @@ async function onSearch(e) {
       );
       return;
     }
-    Notify.info(`Hooray! We found ${totalHits} images.`);
+    if (page < 2) {
+      Notify.info(`Hooray! We found ${totalHits} images.`);
+    }
     renderCards(hits);
     lightbox.refresh();
     page += 1;
