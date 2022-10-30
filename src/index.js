@@ -14,6 +14,7 @@ const refs = {
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
+  disableScroll: true,
 });
 
 let currentInputValue = null;
@@ -34,6 +35,7 @@ async function onSearch(e) {
   refs.gallery.innerHTML = '';
   try {
     const {
+      data: { totalHits },
       data: { hits },
     } = await fetchImages(inputValue, page);
     if (!hits.length) {
@@ -42,6 +44,7 @@ async function onSearch(e) {
       );
       return;
     }
+    Notify.info(`Hooray! We found ${totalHits} images.`);
     renderCards(hits);
     lightbox.refresh();
     page += 1;
@@ -61,8 +64,12 @@ async function onLoad(e) {
       data: { hits },
     } = await fetchImages(inputValue, page);
     if (page > Math.floor(totalHits / per_page)) {
-      Notify.failure('Hooray! We found totalHits images.');
+      refs.loadBtn.classList.add('disable');
+      Notify.failure(
+        "We're sorry, but you've reached the end of search results."
+      );
     }
+    console.log(page > Math.floor(totalHits / per_page));
     renderCards(hits);
     lightbox.refresh();
     page += 1;
@@ -98,7 +105,8 @@ function renderCards(cards) {
         <p class="info-item">
           <b>Downloads</b>${downloads}
         </p>
-      </div></a>`;
+      </div>
+      </a>`;
       }
     )
     .join('');
