@@ -4,7 +4,7 @@ const axios = require('axios').default;
 
 const URL_API = 'https://pixabay.com/api/';
 
-export async function fetchImages(search, pageNumber = 1) {
+export async function fetchImages(search, per_page, pageNumber = 1) {
   const params = new URLSearchParams({
     key: '30931366-a07d02e157d3797ab4f355b57',
     q: `${search}`,

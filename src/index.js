@@ -18,9 +18,9 @@ const lightbox = new SimpleLightbox('.gallery a', {
   scrollZoom: false,
 });
 
+const per_page = 40;
 let currentInputValue = null;
 let page = 1;
-const per_page = 40;
 
 refs.form.addEventListener('submit', onSearch);
 
@@ -38,7 +38,10 @@ async function onSearch(e) {
     const {
       data: { totalHits },
       data: { hits },
-    } = await fetchImages(inputValue, page);
+    } = await fetchImages(inputValue, per_page, page);
+    if (!inputValue) {
+      return;
+    }
     if (!hits.length) {
       Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
@@ -49,6 +52,7 @@ async function onSearch(e) {
       Notify.info(`Hooray! We found ${totalHits} images.`);
     }
     renderCards(hits);
+    smoothScroll();
     lightbox.refresh();
     page += 1;
     currentInputValue = inputValue;
@@ -65,20 +69,30 @@ async function onLoad(e) {
     const {
       data: { totalHits },
       data: { hits },
-    } = await fetchImages(inputValue, page);
+    } = await fetchImages(inputValue, per_page, page);
     if (page > Math.floor(totalHits / per_page)) {
       refs.loadBtn.classList.add('disable');
       Notify.failure(
         "We're sorry, but you've reached the end of search results."
       );
     }
-    console.log(page > Math.floor(totalHits / per_page));
     renderCards(hits);
+    smoothScroll();
     lightbox.refresh();
     page += 1;
   } catch (error) {
     console.log(error);
   }
+}
+
+function smoothScroll() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
 
 function renderCards(cards) {
