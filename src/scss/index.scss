@@ -31,8 +31,7 @@ body {
   transform: translatex(-50%);
   margin-bottom: 20px;
   padding: 10px;
-  text-align: center;
-  background-color: rgba(58, 129, 148, 0.8);
+  background-color: rgba(181, 219, 230, 0.8);
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
@@ -45,6 +44,7 @@ body {
     width: 100%;
   }
 }
+
 .search-form input {
   padding: 6px;
   border: 0;
@@ -70,6 +70,7 @@ body {
     transform: translateY(-3px);
   }
 }
+
 .photo-card {
   text-decoration: none;
   flex-basis: 45%;
@@ -92,6 +93,7 @@ body {
     flex-basis: 100%;
   }
 }
+
 .photo-card img {
   display: block;
   width: 100%;
@@ -99,24 +101,26 @@ body {
   object-fit: cover;
   margin-bottom: 5px;
 }
+
 .info {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
 }
+
 .info p {
   margin: 0;
   padding: 5px;
   text-align: center;
 }
+
 .info b {
   display: block;
   text-transform: uppercase;
   margin-bottom: 5px;
   font-size: 12px;
 }
-.info-item {
-}
+
 button.disable {
   display: none;
 }

@@ -18,7 +18,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
   scrollZoom: false,
 });
 
-const per_page = 40;
+const per_page = 20;
 let currentInputValue = null;
 let page = 1;
 
@@ -29,9 +29,7 @@ refs.loadBtn.addEventListener('click', onLoad);
 async function onSearch(e) {
   e.preventDefault();
   const inputValue = refs.form.elements.searchQuery.value;
-  if (currentInputValue !== inputValue) {
-    page = 1;
-  }
+  if (inputValue === '') return;
   refs.loadBtn.classList.add('disable');
   refs.gallery.innerHTML = '';
   try {
@@ -51,10 +49,10 @@ async function onSearch(e) {
     if (page < 2) {
       Notify.info(`Hooray! We found ${totalHits} images.`);
     }
+    refs.form.reset();
     renderCards(hits);
     smoothScroll();
     lightbox.refresh();
-    page += 1;
     currentInputValue = inputValue;
     refs.loadBtn.classList.remove('disable');
   } catch (error) {
